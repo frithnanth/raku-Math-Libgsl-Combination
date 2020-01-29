@@ -148,7 +148,7 @@ These functions advance or step backwards the combination and return B<self>, us
 =head3 bnext(--> Bool)
 =head3 bprev(--> Bool)
 
-These functions advance or step backwards the combination and return a Bool: B<True> if successful or B<False> if there's no more permutation to produce.
+These functions advance or step backwards the combination and return a Bool: B<True> if successful or B<False> if there's no more combination to produce.
 
 =head3 write(Str $filename! --> Int)
 
