@@ -33,7 +33,7 @@ sub gsl_combination_valid(gsl_combination $c --> int32) is native(LIB) is export
 sub gsl_combination_next(gsl_combination $c --> int32) is native(LIB) is export(:combfunc) { * }
 sub gsl_combination_prev(gsl_combination $c --> int32) is native(LIB) is export(:combfunc) { * }
 # Reading and writing combinations
-sub mgsl_combination_fwrite(Str $filename, gsl_combination $p --> int32) is native(GSLHELPER) is export(:permio) { * }
-sub mgsl_combination_fread(Str $filename, gsl_combination $p --> int32) is native(GSLHELPER) is export(:permio) { * }
-sub mgsl_combination_fprintf(Str $filename, gsl_combination $p, Str $format --> int32) is native(GSLHELPER) is export(:permio) { * }
-sub mgsl_combination_fscanf(Str $filename, gsl_combination $p --> int32) is native(GSLHELPER) is export(:permio) { * }
+sub mgsl_combination_fwrite(Str $filename, gsl_combination $p --> int32) is native(GSLHELPER) is export(:combio) { * }
+sub mgsl_combination_fread(Str $filename, gsl_combination $p --> int32) is native(GSLHELPER) is export(:combio) { * }
+sub mgsl_combination_fprintf(Str $filename, gsl_combination $p, Str $format --> int32) is native(GSLHELPER) is export(:combio) { * }
+sub mgsl_combination_fscanf(Str $filename, gsl_combination $p --> int32) is native(GSLHELPER) is export(:combio) { * }
