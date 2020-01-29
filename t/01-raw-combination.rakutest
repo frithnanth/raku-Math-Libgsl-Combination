@@ -1,0 +1,61 @@
+#!/usr/bin/env perl6
+
+use Test;
+use lib 'lib';
+use Math::Libgsl::Raw::Combination :ALL;
+use Math::Libgsl::Constants;
+use NativeCall;
+
+subtest {
+  my $c = gsl_combination_alloc(4, 3);
+  isa-ok $c, gsl_combination, 'allocate combination structure';
+  lives-ok { gsl_combination_init_first($c) }, 'initialize to first combination';
+  is-deeply $c.data[^3], (0, 1, 2), 'first combination';
+  lives-ok { gsl_combination_init_last($c) }, 'initialize to last combination';
+  is-deeply $c.data[^3], (1, 2, 3), 'last combination';
+  my $cd = gsl_combination_alloc(4, 3);
+  ok gsl_combination_memcpy($cd, $c) == GSL_SUCCESS, 'copy combination';
+  is-deeply $cd.data[^3], (1, 2, 3), 'verify copy';
+  lives-ok { gsl_combination_free($c) }, 'free combination structure';
+  gsl_combination_free($cd);
+}, 'raw - memory operations';
+
+subtest {
+  my $c = gsl_combination_alloc(4, 2);
+  gsl_combination_init_first($c);
+  ok gsl_combination_get($c, 1) == 1, 'get element';
+  gsl_combination_free($c);
+}, 'raw - accessing elements';
+
+subtest {
+  my $c = gsl_combination_alloc(4, 2);
+  ok gsl_combination_n($c) == 4, 'range';
+  ok gsl_combination_k($c) == 2, 'number of elements';
+  gsl_combination_init_first($c);
+  ok gsl_combination_valid($c) == GSL_SUCCESS, 'the combination is valid';
+  gsl_combination_free($c);
+}, 'raw - properties';
+
+#  say $c.data[^3];
+subtest {
+  my $c = gsl_combination_alloc(4, 2);
+  gsl_combination_init_first($c);
+  is-deeply $c.data[^2], (0, 1), 'first combination';
+  gsl_combination_next($c);
+  is-deeply $c.data[^2], (0, 2), 'next combination';
+  gsl_combination_prev($c);
+  is-deeply $c.data[^2], (0, 1), 'previous combination';
+}, 'raw - functions';
+
+subtest {
+  my $filename = 't/raw-combination.dat';
+  LEAVE { with $filename.IO { .unlink if .e } }
+  my $c = gsl_combination_alloc(4, 2);
+  gsl_combination_init_first($c);
+  ok mgsl_combination_fwrite($filename, $c) == GSL_SUCCESS, 'can write data to file';
+  ok mgsl_combination_fread($filename, $c) == GSL_SUCCESS, 'can read data from file';
+  is-deeply $c.data[^2], (0, 1), 'verify data';
+  gsl_combination_free($c);
+}, 'raw - IO';
+
+done-testing;

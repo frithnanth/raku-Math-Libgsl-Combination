@@ -1,0 +1,46 @@
+#!/usr/bin/env perl6
+
+use Test;
+use lib 'lib';
+use Math::Libgsl::Combination;
+use Math::Libgsl::Exception;
+use Math::Libgsl::Constants;
+
+subtest {
+  my Math::Libgsl::Combination $c .= new(:n(5), :k(2));
+  isa-ok $c, Math::Libgsl::Combination, 'new using pairs';
+  ok $c.get(1) == 1, 'get an element';
+  throws-like { $c.get(10) }, X::Libgsl, message => /'out of range'/, 'fails if requested element is out of range';
+  my Math::Libgsl::Combination $c1 .= new(6, 3);
+  isa-ok $c1, Math::Libgsl::Combination, 'new from simple values';
+  lives-ok { $c1.init }, 'init from top';
+  ok $c1.get(1) == 1, 'get an element';
+  lives-ok { $c1.init: :start(BOTTOM) }, 'init from bottom';
+  ok $c1.get(1) == 4, 'get an element';
+  is-deeply $c1.size, (6, 3), 'get combination parameters';
+  ok $c1.is-valid == True, 'check validity';
+}, 'basics';
+
+subtest {
+  my Math::Libgsl::Combination $c .= new(:n(5), :k(2));
+  lives-ok { $c.next }, 'can get next combination';
+  is-deeply $c.all, (0, 2), 'all the elements of the current combination ok';
+  lives-ok { $c.prev }, 'can get previous combination';
+  is-deeply $c.all, (0, 1), 'all the elements of the current combination ok';
+  $c.init;
+  nok $c.bprev, 'bprev returns False when there is no previous combination';
+  while $c.bnext {}
+  nok $c.bnext, 'bnext returns False at end of available combination';
+}, 'next & prev';
+
+subtest {
+  my Math::Libgsl::Combination $c .= new(:n(5), :k(2));
+  $c.next;
+  my $filename = 't/combination.dat';
+  LEAVE { with $filename.IO { .unlink if .e } }
+  ok $c.write($filename) == GSL_SUCCESS, 'can write data to file';
+  ok $c.read($filename) == GSL_SUCCESS, 'can read data from file';
+  is-deeply $c.all, (0, 2), 'verify data';
+}, 'IO';
+
+done-testing;

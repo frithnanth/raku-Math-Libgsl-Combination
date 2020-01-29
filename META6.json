@@ -1,0 +1,30 @@
+{
+  "auth" : "cpan:FRITH",
+  "authors" : [
+    "Fernando Santagata"
+  ],
+  "build-depends" : [
+    "LibraryMake"
+  ],
+  "depends" : [
+    "Math::Libgsl::Constants"
+  ],
+  "description" : "An interface to libgsl, the Gnu Scientific Library - Combinations.",
+  "license" : "Artistic-2.0",
+  "name" : "Math::Libgsl::Combination",
+  "perl" : "6.c",
+  "provides" : {
+    "Math::Libgsl::Combination" : "lib/Math/Libgsl/Combination.rakumod",
+    "Math::Libgsl::Raw::Combination" : "lib/Math/Libgsl/Raw/Combination.rakumod"
+  },
+  "resources" : [
+    "libraries/gslhelper"
+  ],
+  "source-url" : "git://github.com/frithnanth/perl6-Math-Libgsl-Combination.git",
+  "tags" : [
+    "math",
+    "nativecall"
+  ],
+  "test-depends" : [ ],
+  "version" : "0.0.1"
+}
