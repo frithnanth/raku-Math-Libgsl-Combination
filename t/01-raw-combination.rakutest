@@ -36,7 +36,6 @@ subtest {
   gsl_combination_free($c);
 }, 'raw - properties';
 
-#  say $c.data[^3];
 subtest {
   my $c = gsl_combination_alloc(4, 2);
   gsl_combination_init_first($c);
