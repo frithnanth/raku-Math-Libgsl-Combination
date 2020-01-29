@@ -12,7 +12,7 @@ before_install:
   - wget 'http://http.us.debian.org/debian/pool/main/g/gsl/libgsl-dev_2.5+dfsg-6_amd64.deb'
   - sudo dpkg -i libgslcblas0_2.5+dfsg-6_amd64.deb libgsl23_2.5+dfsg-6_amd64.deb libgsl-dev_2.5+dfsg-6_amd64.deb
 install:
-  - zef install --deps-only --/test .
+  - zef install git://github.com/frithnanth/raku-Math-Libgsl-Constants.git
   - zef build .
 script:
   - PERL6LIB=$PWD/lib prove -e perl6 -vr t/*.rakutest
