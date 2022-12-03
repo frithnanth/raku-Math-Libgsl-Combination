@@ -1,6 +1,9 @@
 Revision history for Math-Libgsl-Combination
 
 {{$NEXT}}
+    - Use zef ecosystem
+    - Use Github CI
+    - Use Distribution::Builder::MakeFromJSON to compile resources
 
 0.0.1 2020-01-29T17:06:46+01:00
     - Initial version

@@ -1,6 +1,6 @@
 use v6.c;
 
-unit class Math::Libgsl::Combination:ver<0.0.1>:auth<cpan:FRITH>;
+unit class Math::Libgsl::Combination:ver<0.0.1>:auth<zef:FRITH>;
 
 use Math::Libgsl::Raw::Combination :ALL;
 use Math::Libgsl::Exception;
@@ -95,7 +95,7 @@ Math::Libgsl::Combination - An interface to libgsl, the Gnu Scientific Library -
 
 =head1 SYNOPSIS
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Math::Libgsl::Combination;
 
@@ -177,7 +177,7 @@ The excellent C Library manual is available here L<https://www.gnu.org/software/
 
 This module requires the libgsl library to be installed. Please follow the instructions below based on your platform:
 
-=head2 Debian Linux and Ubuntu 20.04
+=head2 Debian Linux and Ubuntu 20.04+
 
 =begin code
 sudo apt install libgsl23 libgsl-dev libgslcblas0

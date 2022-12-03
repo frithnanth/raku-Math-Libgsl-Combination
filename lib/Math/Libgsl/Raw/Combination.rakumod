@@ -1,9 +1,8 @@
 use v6;
 
-unit module Math::Libgsl::Raw::Combination:ver<0.0.1>:auth<cpan:FRITH>;
+unit module Math::Libgsl::Raw::Combination:ver<0.0.1>:auth<zef:FRITH>;
 
 use NativeCall;
-use LibraryMake;
 
 constant GSLHELPER = %?RESOURCES<libraries/gslhelper>.absolute;
 

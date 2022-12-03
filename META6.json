@@ -1,30 +1,40 @@
 {
-  "auth" : "cpan:FRITH",
-  "authors" : [
+  "auth": "zef:FRITH",
+  "authors": [
     "Fernando Santagata"
   ],
-  "build-depends" : [
+  "build": {
+    "makefile-variables": {
+      "gslhelper": {
+        "resource": "libraries/gslhelper"
+      }
+    }
+  },
+  "build-depends": [
+    "Distribution::Builder::MakeFromJSON"
   ],
-  "depends" : [
-    "LibraryMake",
+  "builder": "Distribution::Builder::MakeFromJSON",
+  "depends": [
+    "Distribution::Builder::MakeFromJSON",
     "Math::Libgsl::Constants"
   ],
-  "description" : "An interface to libgsl, the Gnu Scientific Library - Combinations.",
-  "license" : "Artistic-2.0",
-  "name" : "Math::Libgsl::Combination",
-  "perl" : "6.c",
-  "provides" : {
-    "Math::Libgsl::Combination" : "lib/Math/Libgsl/Combination.rakumod",
-    "Math::Libgsl::Raw::Combination" : "lib/Math/Libgsl/Raw/Combination.rakumod"
+  "description": "An interface to libgsl, the Gnu Scientific Library - Combinations.",
+  "license": "Artistic-2.0",
+  "name": "Math::Libgsl::Combination",
+  "perl": "6.c",
+  "provides": {
+    "Math::Libgsl::Combination": "lib/Math/Libgsl/Combination.rakumod",
+    "Math::Libgsl::Raw::Combination": "lib/Math/Libgsl/Raw/Combination.rakumod"
   },
-  "resources" : [
+  "resources": [
     "libraries/gslhelper"
   ],
-  "source-url" : "git://github.com/frithnanth/raku-Math-Libgsl-Combination.git",
-  "tags" : [
+  "source-url": "git://github.com/frithnanth/raku-Math-Libgsl-Combination.git",
+  "tags": [
     "math",
     "nativecall"
   ],
-  "test-depends" : [ ],
-  "version" : "0.0.1"
+  "test-depends": [
+  ],
+  "version": "0.0.1"
 }
