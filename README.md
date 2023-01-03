@@ -25,6 +25,8 @@ This package provides both the low-level interface to the C library (Raw) and a 
 
 The constructor accepts two parameters: the total number of elements in the set and the number of elements chosen from the set; the parameters can be passed as Pair-s or as single values. The combination object is already initialized in lexicographically first combination, i.e. (0, 1, 2, …, $k − 1).
 
+All the following methods *throw* on error if they return **self**, otherwise they *fail* on error.
+
 ### init(:$start? = TOP)
 
 This method initialize the combination object and returns **self**. The default is to initialize the object in lexicographically first combination, but by specifying the optional parameter **$start** as **BOTTOM** the initialization is performed in the lexicographically last combination, i.e. ($n − $k, $n − $k + 1, …, $n − 1). TOP and BOTTOM are declared as values of the Starting-point enum.
